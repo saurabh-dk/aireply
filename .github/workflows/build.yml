@@ -43,7 +43,7 @@ jobs:
 
       - name: Activate Virtual ENV
         working-directory: ./backend
-        run: python -m venv venv && source venv/bin/activate && pip3 install -r ./backend/requirements.txt
+        run: python -m venv venv && source venv/bin/activate && pip3 install -r requirements.txt
         if: steps.cache-venv.outputs.cache-hit != 'true'
 
       - name: Install dependencies again
@@ -51,18 +51,20 @@ jobs:
         run: pip3 install -r requirements.txt
 
       - name: Create archive of dependencies
+        working-directory: ./backend
         run: |
           cd ./venv/lib/python3.9/site-packages
           zip -r9 ../../../../api.zip .
 
       - name: Add API files to Zip file
+        working-directory: ./backend
         run: cd ./api && zip -g ../api.zip -r .
 
       - name: Upload zip file artifact
         uses: actions/upload-artifact@v2
         with:
           name: api
-          path: api.zip
+          path: ./backend/api.zip
 
       - name: NPM Install
         run: |
