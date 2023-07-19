@@ -1,5 +1,5 @@
 import React from 'react';
-import { Paper, Card, CardContent, Typography, Divider } from '@mui/material';
+import { Paper, Card, CardContent, Typography } from '@mui/material';
 
 interface TextReplyProps {
 	email: string;
