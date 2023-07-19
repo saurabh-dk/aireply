@@ -37,7 +37,7 @@ jobs:
         id: cache-venv # name for referring later
         with:
           path: venv
-          key: ${{ runner.os }}-venv-${{ hashFiles('**backend/requirements*.txt') }}
+          key: ${{ runner.os }}-venv-${{ hashFiles('**requirements*.txt') }}
           restore-keys: |
             ${{ runner.os }}-venv-
 
