@@ -51,7 +51,6 @@ jobs:
         run: pip3 install -r requirements.txt
 
       - name: Create archive of dependencies
-        working-directory: ./backend
         run: |
           cd ./venv/lib/python3.9/site-packages
           zip -r9 ../../../../api.zip .
@@ -61,7 +60,7 @@ jobs:
           ls
           echo "------"
           ls ..
-          cd ./api && zip -g ../api.zip -r .
+          cd ./backend && zip -g ../api.zip -r .
 
       - name: Upload zip file artifact
         uses: actions/upload-artifact@v2
