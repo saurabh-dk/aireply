@@ -44,7 +44,6 @@ jobs:
       - name: Activate Virtual ENV
         working-directory: ./backend
         run: python -m venv venv && source venv/bin/activate && pip3 install -r requirements.txt
-        if: steps.cache-venv.outputs.cache-hit != 'true'
 
       - name: Install dependencies again
         working-directory: ./backend
