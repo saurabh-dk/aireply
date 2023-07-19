@@ -46,6 +46,10 @@ jobs:
         run: python -m venv venv && source venv/bin/activate && pip3 install -r requirements.txt
         if: steps.cache-venv.outputs.cache-hit != 'true'
 
+      - name: Install dependencies again
+        working-directory: ./backend
+        run: pip3 install -r requirements.txt
+
       - name: Create archive of dependencies
         run: |
           cd ./venv/lib/python3.9/site-packages
