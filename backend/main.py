@@ -12,6 +12,8 @@ from mangum import Mangum
 
 from fastapi.middleware.cors import CORSMiddleware
 
+import sentry_sdk
+
 load_dotenv()
 
 os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
@@ -41,6 +43,12 @@ async def get_reply(email: Email) -> Reply:
     
     reply: Reply = Reply(status="success", email=email, id=uuid.uuid4().hex, text = email_reply.choices[0].text)
     return reply
+
+# Sentry monitoring.
+sentry_sdk.init(
+    dsn="https://179d530db5a64020b9d11d5fac282574@o4505554363678720.ingest.sentry.io/4505554365644800",
+    traces_sample_rate=1.0,
+)
 
 # Used for deploying on AWS Lambda
 handler = Mangum(app)
