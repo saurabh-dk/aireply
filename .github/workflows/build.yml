@@ -53,13 +53,11 @@ jobs:
         working-directory: ./backend
         run: |
           cd ./venv/lib/python3.9/site-packages
-          ls ../../../..
           zip -r9 ../../../../api.zip .
 
       - name: Add API files to Zip file
         run: |
-          ls ..
-          cd ./backend && zip -g ../api.zip -r .
+          cd ./backend && ls && zip -g ../api.zip -r .
 
       - name: Upload zip file artifact
         uses: actions/upload-artifact@v2
