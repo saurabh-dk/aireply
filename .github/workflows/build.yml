@@ -57,7 +57,7 @@ jobs:
 
       - name: Add API files to Zip file
         run: |
-          cd ./backend && ls && zip -g ../api.zip -r .
+          cd ./backend && ls && zip -g ./api.zip -r .
 
       - name: Upload zip file artifact
         uses: actions/upload-artifact@v2
