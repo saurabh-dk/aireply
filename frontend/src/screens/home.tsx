@@ -57,12 +57,18 @@ const Home: React.FC = () => {
 		}
 	}
 
+	const onCheck = async () => {
+		const res = await emailService.checkService();
+		console.log(res);
+	}
+
 	return (
 		<div>
 			<Typography variant="h6" gutterBottom>
 				Enter content to get AiReply
 			</Typography>
-			<TextInput onSubmit={handleSubmit} disabled={disabled} />
+			<TextInput onSubmit={handleSubmit} onCheck={onCheck} disabled={disabled} />
+
 			<Box sx={{ height: 40 }}>
 				<Fade
 					in={disabled}

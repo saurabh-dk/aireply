@@ -3,10 +3,11 @@ import { TextField, Button } from '@mui/material';
 
 interface TextInputProps {
 	onSubmit: (text: string, context: string, purpose: string) => void;
+	onCheck: () => void;
 	disabled: boolean
 }
 
-const TextInput: React.FC<TextInputProps> = ({ onSubmit, disabled = false }) => {
+const TextInput: React.FC<TextInputProps> = ({ onSubmit, onCheck, disabled = false }) => {
 
 	const [text, setText] = useState('');
 	const [context, setContext] = useState('');
@@ -65,6 +66,13 @@ const TextInput: React.FC<TextInputProps> = ({ onSubmit, disabled = false }) => 
 				disabled={disabled}
 				onClick={handleSubmit}>
 				Submit
+			</Button>
+			<Button
+				sx={{ mt: 2 }}
+				variant="contained"
+				color="primary"
+				onClick={onCheck}>
+				Check
 			</Button>
 		</div>
 	);

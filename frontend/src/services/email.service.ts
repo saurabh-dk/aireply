@@ -3,14 +3,18 @@ import { AiRequest } from '../models/airequest'
 import { Reply } from '../models/reply'
 
 // Local API route for FastAPI
-const API_URL = "https://ak52xf613f.execute-api.us-west-1.amazonaws.com/"
+const API_URL = "http://localhost:8000"
 
 class EmailService {
-  async getEmailReply(request: AiRequest): Promise<Reply> {
-	const response = await axios.post(API_URL, request);
+	async getEmailReply(request: AiRequest): Promise<Reply> {
+		const response = await axios.post(API_URL+"/get_reply", request);
+		return response.data;
+	  }
 
-	return response.data;
-  }
+	  async checkService(): Promise<{message: string}> {
+		const response = await axios.get(API_URL);
+		return response.data;
+	  }
 }
 
 export default new EmailService()
